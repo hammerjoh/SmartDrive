@@ -364,7 +364,7 @@ void FBusTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    fbus();
+    fbus_loop();
     osDelay(1);
   }
   /* USER CODE END FBusTask */

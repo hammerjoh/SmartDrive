@@ -59,7 +59,8 @@ extern UART_HandleTypeDef huart8;
 extern TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN EV */
-
+extern void FBus_HandleByte(uint8_t byte);
+extern UART_HandleTypeDef huart8;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -180,7 +181,12 @@ void TIM3_IRQHandler(void)
 void UART8_IRQHandler(void)
 {
   /* USER CODE BEGIN UART8_IRQn 0 */
-
+  if (__HAL_UART_GET_FLAG(&huart8, UART_FLAG_RXNE) != RESET) {
+      uint8_t received_byte = (uint8_t)(huart8.Instance->RDR & 0x00FF);
+      
+      // Hier rufen wir die Brücke auf, die das Byte zu C++ schickt
+      FBus_HandleByte(received_byte); 
+  }
   /* USER CODE END UART8_IRQn 0 */
   HAL_UART_IRQHandler(&huart8);
   /* USER CODE BEGIN UART8_IRQn 1 */

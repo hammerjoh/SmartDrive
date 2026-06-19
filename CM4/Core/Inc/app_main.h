@@ -7,7 +7,7 @@ extern "C" {
 
 void app_main(void);
 
-void fbus(void);
+void fbus_loop(void);
 
 #ifdef __cplusplus
 }

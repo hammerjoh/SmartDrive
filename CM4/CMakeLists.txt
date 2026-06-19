@@ -54,12 +54,15 @@ enable_language(C CXX ASM)
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+    Core/Inc
+    Core/Src/components/FBus
 )
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     Core/Src/app_main.cpp
+    Core/Src/components/FBus/FBus.cpp
 )
 
 # Link directories setup
